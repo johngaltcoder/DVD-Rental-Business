@@ -15,13 +15,13 @@ namespace DVDRental.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public IActionResult Index(string searchString)
         {
             var results = from dt in _context.Set<DVDTitle>()
                           join cm in _context.Set<CastMember>()
                           on dt.DVDNumber equals cm.DVDNumber
                           join dc in _context.Set<DVDCopy>()
-                          .Where(c => _context.Loan.All(l=>(l.DateReturned == null)))
+                          .Where(c => _context.Loan.Any(l => (c.CopyNumber == l.CopyNumber && l.DateReturned != null)))
                           on dt.DVDNumber equals dc.DVDNumber
                           join a in _context.Set<Actor>().
                           Where(x => x.ActorSurname.Contains(searchString))
@@ -32,6 +32,7 @@ namespace DVDRental.Controllers
                           {
                               DVDNumber = grp.Key.DVDNumber,
                               Dvd_count = grp.Count(),
+                              ActorSurname = grp.Key.ActorSurname,
                               Title = grp.Key.title,
                           };
 
