@@ -51,7 +51,8 @@ namespace DVDRental.Controllers
         public IActionResult Create()
         {
             ViewData["CopyNumber"] = new SelectList(_context.DVDCopy, "CopyNumber", "CopyNumber");
-            ViewData["LoanTypeNumber"] = new SelectList(_context.LoanType, "LoanTypeNumber", "LoanTypeNumber");
+            //ViewData["LoanTypeNumber"] = new SelectList(_context.LoanType, "LoanTypeNumber", "LoanTypeNumber");
+            ViewData["LoanType"] = new SelectList(_context.LoanType, "Loantype", "Loantype");
             ViewData["MemberNumber"] = new SelectList(_context.Member, "MemberNumber", "MemberNumber");
             return View();
         }
@@ -61,17 +62,44 @@ namespace DVDRental.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LoanNumber,DateOut,DateDue,DateReturned,LoanTypeNumber,CopyNumber,MemberNumber")] Loan loan)
+        public async Task<IActionResult> Create([Bind("LoanNumber,Loantype,CopyNumber,MemberNumber")] Loan loan)
         {
+            string loanTypeStr = HttpContext.Request.Form["LoanType.Loantype"];
+            LoanType id = _context.LoanType.Where(l=>l.Loantype == loanTypeStr ).FirstOrDefault();
+
+            Member      member = _context.Member.Where(l=>l.MemberNumber == loan.MemberNumber).Include(m=>m.MembershipCategory).FirstOrDefault();
+            DVDCopy cat    = _context.DVDCopy.Where(l=>l.CopyNumber == loan.CopyNumber ).Include(c=>c.DVDTitle).ThenInclude(d=>d.DVDCategory).FirstOrDefault();
+
+            int remainingLoanCount = _context.Loan.Where(l=> l.MemberNumber == loan.MemberNumber && l.DateReturned == null).Count();
+
+            ViewData["CopyNumber"] = new SelectList(_context.DVDCopy, "CopyNumber", "CopyNumber", loan.CopyNumber);
+            ViewData["LoanType"] = new SelectList(_context.LoanType, "Loantype", "Loantype", loan.LoanType);
+            ViewData["MemberNumber"] = new SelectList(_context.Member, "MemberNumber", "MemberNumber", loan.MemberNumber);
+
+            loan.DateOut = DateTime.Now;
+
+            loan.DateDue = DateTime.Now.AddDays(id.LoanDuration);
+
+            if(remainingLoanCount >= member.MembershipCategory.MembershipCategoryTotalLoans)
+            {
+                ModelState.AddModelError(string.Empty, "Member has too many DVD unreturned!");
+                return View();
+            }
+
+            if (DateTime.Today.Year  - member.MemberDateOfBirth.Year < 18 && cat.DVDTitle.DVDCategory.AgeRestricted)
+            {
+                ModelState.AddModelError(string.Empty, "Member is underaged for this DVD");
+                return View();
+            }
+
+            loan.LoanTypeNumber = id.LoanTypeNumber;
             if (ModelState.IsValid)
             {
                 _context.Add(loan);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("success", "Loan Created Successfully your total Price" + id.LoanDuration * cat.DVDTitle.StandardCharge);
+                return View();
             }
-            ViewData["CopyNumber"] = new SelectList(_context.DVDCopy, "CopyNumber", "CopyNumber", loan.CopyNumber);
-            ViewData["LoanTypeNumber"] = new SelectList(_context.LoanType, "LoanTypeNumber", "LoanTypeNumber", loan.LoanTypeNumber);
-            ViewData["MemberNumber"] = new SelectList(_context.Member, "MemberNumber", "MemberNumber", loan.MemberNumber);
             return View(loan);
         }
 
