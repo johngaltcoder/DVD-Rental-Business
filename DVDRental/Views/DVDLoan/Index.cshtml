@@ -96,5 +96,15 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.MemberNumber)
         </dd>
+            @if (Model == null)
+            {
+                
+            }
+            else if(Model.DateReturned == null)
+            {
+        <dd class = "col-sm-10">
+            <a class="btn btn-secondary" asp-area="" asp-route-id="@Model.CopyNumber" asp-controller="DVDReturn"  >Return DVD</a>
+        </dd>
+            }
     </dl>
 </div>
