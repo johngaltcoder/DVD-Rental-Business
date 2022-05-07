@@ -5,7 +5,7 @@
 @using (Html.BeginForm())
 {
     <p>
-        Find by name: @Html.TextBox("searchString")  
+        Actor's last name: @Html.TextBox("searchString")  
         <input type="submit" value="Search" />
     </p>
 }
@@ -14,14 +14,12 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Actor.ActorSurname)
+                Actor
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Actor.ActorFirstName)
+                Movie
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DVDTitle.title)
-            </th>
+        
             <th></th>
         </tr>
     </thead>
@@ -29,11 +27,9 @@
 @foreach (var item in Model) {
         <tr>
             <th>
-                @Html.DisplayFor(modelItem=> item.Actor.ActorSurname)
+                @Html.DisplayFor(modelItem=> item.Actor.ActorFirstName) @Html.DisplayFor(modelItem=> item.Actor.ActorSurname)
             </th>
-            <th>
-                @Html.DisplayFor(modelItem=> item.Actor.ActorFirstName)
-            </th>
+     
             <th>
                 @Html.DisplayFor(modelItem=> item.DVDTitle.title)
             </th>

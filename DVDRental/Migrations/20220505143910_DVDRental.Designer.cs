@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DVDRental.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220504142505_init")]
-    partial class init
+    [Migration("20220505143910_DVDRental")]
+    partial class DVDRental
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

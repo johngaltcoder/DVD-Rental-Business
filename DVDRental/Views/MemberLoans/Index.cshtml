@@ -6,7 +6,7 @@
 @using (Html.BeginForm())
 {
     <p>
-        Find by name: @Html.TextBox("searchString")
+        Member's last name: @Html.TextBox("searchString")
         <input type="submit" value="Search" />
     </p>
 }
@@ -14,9 +14,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                MemberNumber
-            </th>
+       
             <th>
                DVD Number
             </th>
@@ -36,9 +34,7 @@
             @foreach (var item in loans)
             {
                 <tr>
-                    <th>
-                        @Html.DisplayFor(modelItem=> item.MemberNumber)
-                    </th>
+                 
                     <th>
                         @Html.DisplayFor(modelItem=> item.DVDCopy.DVDNumber)
                     </th>

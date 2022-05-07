@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DVDRental.Controllers
 {
-    [Authorize(Roles = "Manager")]
+    //[Authorize(Roles = "Manager")]
     public class ActorDVDController : Controller
     {
 

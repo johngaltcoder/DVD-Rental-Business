@@ -10,12 +10,11 @@
         <input type="submit" value="Search" /></p>
 }
 
+
 <table class="table">
     <thead>
+        
         <tr>
-            <th>
-                Actor 
-            </th>
             <th>
                DVD Number 
             </th>
@@ -32,13 +31,10 @@
 @foreach (var item in results) {
         <tr>
             <th>
-                @Html.DisplayFor(modelItem=> item.ActorSurname)
-            </th>
-            <th>
                 @Html.DisplayFor(modelItem=> item.DVDNumber)
             </th>
             <th>
-                @Html.DisplayFor(modelItem=> item.Dvd_count)
+                @Html.DisplayFor(modelItem=> item.Dvd_count) available
             </th>
             <th>
                 @Html.DisplayFor(modelItem=> item.Title)

@@ -19,7 +19,7 @@ namespace DVDRental.Controllers
                 .ThenInclude(l=>l.DVDCopy)
                 .ThenInclude(c=>c.DVDTitle)
                 .Where(m=>m.Loan.All(l=>l.DateOut <= DateTime.UtcNow.AddDays(30)))
-                .Where(m =>m.MemberFirstName.Contains(searchString)).FirstOrDefault();
+                .Where(m =>m.MemberLastName.Contains(searchString)).FirstOrDefault();
             ViewData["member"] = results;
             if(results == null)
             {
