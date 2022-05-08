@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DVDRental.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DVDRental.Controllers
 {
+    [Authorize(Roles = "Assistant, Manager")]
     public class OldCopiesController : Controller
     {
         private readonly ApplicationDbContext  _context;

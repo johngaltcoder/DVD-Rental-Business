@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
+[Authorize(Roles = "Assistant")]
 public class RoleManagerController : Controller
 {
     private readonly RoleManager<IdentityRole> _roleManager;

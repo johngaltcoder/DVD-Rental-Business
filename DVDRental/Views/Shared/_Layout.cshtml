@@ -13,7 +13,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ropey DVD</a>
-                @if (User.IsInRole("User"))
+                @if ( User.IsInRole("Assistant")|| User.IsInRole("Manager"))
                 {
                     <tr>
                          <td class="nav-item">
@@ -37,6 +37,13 @@
                         <a class="nav-link text-light" asp-area="" asp-controller="OldCopies" asp-action="Index">Old Copies</a>
                     </td>
                     </tr>
+                }
+
+                @if (User.IsInRole("Manager"))
+                {
+                        <td class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+                        </td>
                 }
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">

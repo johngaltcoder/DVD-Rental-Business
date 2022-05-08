@@ -3,9 +3,11 @@ using DVDRental.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DVDRental.Controllers
 {
+    [Authorize(Roles = "Manager,Assistant")]
     public class DVDReturnController: Controller
     {
 

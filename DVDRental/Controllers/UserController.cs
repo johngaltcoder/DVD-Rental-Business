@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DVDRental.Controllers
 {
+    [Authorize(Roles = "Assistant,Manager")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -1,11 +1,13 @@
 ﻿using DVDRental.Areas.Identity.Data;
 using DVDRental.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DVDRental.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class UserRolesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

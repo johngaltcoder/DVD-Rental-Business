@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DVDRental.Controllers
 {
+    [Authorize(Roles = "Manager,Assistant")]
     public class ActorsController : Controller
     {
         private readonly ApplicationDbContext _context;

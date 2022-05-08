@@ -2,9 +2,11 @@
 using DVDRental.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DVDRental.Controllers
 {
+    [Authorize(Roles = "Manager, Assistant")]
     public class MemberLoansController: Controller
     {
         private readonly ApplicationDbContext _context;

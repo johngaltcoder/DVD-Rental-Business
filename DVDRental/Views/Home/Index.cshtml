@@ -8,17 +8,15 @@
        
        <table style="margin-left:150px;">
 
-       <tr>
-
-        <td>
-       <div class="card" style="height: 25rem; width: 15rem;">
-        <img class="card-img-top" src="https://cdn-icons-png.flaticon.com/512/4514/4514934.png" alt="Card image cap">
-        <div class="card-body">
-        <p class="card-text">Search a DVD by entering actor's last name</p>
-        <a href="/ActorDVD" class="btn btn-primary">Search DVD</a>
-        </div>
-       </div>
-       </td>
+                    <td>
+           <div class="card" style="height: 25rem; width: 15rem;">
+            <img class="card-img-top" src="https://cdn-icons-png.flaticon.com/512/4514/4514934.png" alt="Card image cap">
+            <div class="card-body">
+            <p class="card-text">Search a DVD by entering actor's last name</p>
+            <a href="/ActorDVD" class="btn btn-primary">Search DVD</a>
+            </div>
+           </div>
+           </td>
 
        <td>
        <div class="card" style="height: 25rem; width: 15rem;">
@@ -30,7 +28,10 @@
        </div>
        </td>
 
-       <td>
+                @if (User.IsInRole("Assistant") || User.IsInRole("Manager"))
+                {
+                    
+                <td>
        <div class="card" style="height: 25rem; width: 15rem;">
         <img class="card-img-top" src="https://cdn-icons-png.flaticon.com/512/3029/3029373.png" alt="Card image cap">
         <div class="card-body">
@@ -51,8 +52,6 @@
        </td>
 
      
-
-       </tr>
 
        <tr>
 
@@ -107,6 +106,7 @@
        </td>
 
        </tr>
+                }
 
        </table>
 

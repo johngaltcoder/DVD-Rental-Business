@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using DVDRental.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace DVDRental.Controllers
 {
+    [Authorize(Roles = "Manager,Assistant")]
     public class MemberDetails: Controller
     {
 
