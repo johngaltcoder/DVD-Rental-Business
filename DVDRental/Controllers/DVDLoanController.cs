@@ -21,8 +21,8 @@ namespace DVDRental.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                var loan = ApplicationDbContext.Where(l => l.MemberNumber == int.Parse(searchString)).Include(l=>l.DVDCopy)
-                    .ThenInclude(dc=>dc.DVDTitle).Include(l=>l.Member).FirstOrDefault();
+                var loan = ApplicationDbContext.Where(l => l.CopyNumber == int.Parse(searchString)).Include(l=>l.DVDCopy)
+                    .ThenInclude(dc=>dc.DVDTitle).Include(l=>l.Member).OrderBy(l=>l.DateOut).LastOrDefault();
                 return View(loan);
             }
             return View();

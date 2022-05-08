@@ -8,8 +8,32 @@
 
 <h4>DVDTitle</h4>
 <hr />
+
+<script>
+     $('.new_studio').hide();
+
+ $('.sign-in__button').click(function(e) {
+   e.preventDefault();
+   $(this).addClass('active');
+   $('.new_studio').removeClass('active');
+   $('.new_studio').hide();
+ });
+
+ $('.register__button').click(function(e) {
+   e.preventDefault();
+   $(this).addClass('active');
+   $('.sign-in__button').removeClass('active');
+   $('.register__form').show();
+   $('.login__form').hide();
+   $('#edit-firstname').focus(); //Should appear after $('.register__form').show(); because if it's before that, the register form doesn't exist in the DOM
+ });
+</script>
+
 <div class="row">
     <div class="col-md-4">
+        <button class="btn sign-in__button ">
+          Sign in        
+        </button>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -17,6 +41,13 @@
                 <input asp-for="title" class="form-control" />
                 <span asp-validation-for="title" class="text-danger"></span>
             </div>
+
+            <div class="new_studio">
+                <label asp-for="title" class="control-label"></label>
+                <input asp-for="title" class="form-control" />
+                <span asp-validation-for="title" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="DateReleased" class="control-label"></label>
                 <input asp-for="DateReleased" class="form-control" />
@@ -56,5 +87,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
