@@ -7,36 +7,31 @@
 
 @using (Html.BeginForm())
 {
-    <p>
+    
+    <p style= " margin-top: 25px;">
         Enter member number : <input type="number" asp-for="MemberNumber" name="searchString"/>  
         <input type="submit" value="Search" />
     </p>
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>Last Loan</h4>
+    <h4 style="align-content:center">Last Loan</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DVDCopy.DVDTitle.title)
+            DVD:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DVDCopy.DVDTitle.title)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Member.MemberFirstName)
+            Borrower/Member:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Member.MemberFirstName)
+            @Html.DisplayFor(model => model.Member.MemberFirstName) @Html.DisplayFor(model => model.Member.MemberLastName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Member.MemberLastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Member.MemberLastName)
-        </dd>
+       
+        
         <dt class = "col-sm-2">
             Returned?
         </dt >

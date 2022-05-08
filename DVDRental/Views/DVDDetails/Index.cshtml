@@ -4,33 +4,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>DVD Information</h1>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                DVD
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateReleased)
+                Release
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StandardCharge)
+                Standard Charge
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PenaltyCharge)
+                Penalty
+            </th>
+         
+            <th>
+               Studio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Studio)
+                Producer
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Studio.StudioName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Producer.ProducerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.actors)
+                Cast Members
             </th>
             <th></th>
         </tr>
@@ -50,9 +48,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PenaltyCharge)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Studio.StudioNumber)
-            </td>
+          
             <td>
                 @Html.DisplayFor(modelItem => item.Studio.StudioName)
             </td>
