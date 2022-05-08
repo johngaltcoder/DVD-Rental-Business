@@ -4,11 +4,12 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="navbar-nav" style="margin-left: 70%;">
 @if (SignInManager.IsSignedIn(User))
 {
    
     <li class="nav-item">
+
         <a id="manage" class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
     </li>
     <li class="nav-item">

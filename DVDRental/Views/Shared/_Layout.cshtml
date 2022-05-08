@@ -16,11 +16,14 @@
                 @if (User.IsInRole("User"))
                 {
                     <tr>
+                         <td class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Actors" asp-action="Index">Actors</a>
+                    </td>
                     <td class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="Producers" asp-action="Index">Producers</a>
                     </td>
                     <td class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="DVDTitles" asp-action="Index">DVDTitles</a>
+                        <a class="nav-link text-light" asp-area="" asp-controller="DVDTitles" asp-action="Index">DVDs</a>
                     </td>
                     <td class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="MembershipCategories" asp-action="Index">MemberShip Categories</a>
